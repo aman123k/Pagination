@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import fetchData from "./Function/fetchdata";
 import Pagination from "./component/Pagination";
+import Header from "./component/Header";
 
 export default function Home() {
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -20,6 +21,7 @@ export default function Home() {
   return (
     <>
       <div>
+        <Header />
         {data?.map((data: any, index: number) => {
           return <div key={index}>{data?.id}</div>;
         })}

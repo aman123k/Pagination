@@ -1,4 +1,5 @@
 import React from "react";
+import { FaCaretDown } from "react-icons/fa";
 
 function Pagination({
   totalPage,
@@ -20,7 +21,10 @@ function Pagination({
 
   return (
     <>
-      <section className=" flex items-center gap-4 justify-center">
+      <section
+        className=" flex items-center absolute bottom-16 ml-[50%]
+      translate-x-[-50%] gap-4 px-4 "
+      >
         <button
           disabled={currentPage === 1}
           className={` text-sm ${
@@ -33,9 +37,11 @@ function Pagination({
         {pageArray.map((page, index) => {
           return (
             <button
-              className={`border-[#EAEAEA] border py-1.5 px-3 rounded-lg ${
-                currentPage === index + 1 ? "bg-[#F35217] text-white" : ""
-              }`}
+              className={`border-[#EAEAEA] border py-1.5 max-[650px]:text-sm px-3 rounded-lg ${
+                currentPage === index + 1
+                  ? "bg-[#F35217] text-white"
+                  : "text-[#919191]"
+              } drop-shadow-sm`}
               onClick={() => setCurrentPage(index + 1)}
               key={index}
             >
@@ -52,31 +58,30 @@ function Pagination({
         >
           Next
         </button>
+
         <div className=" flex items-center gap-4">
           <span className=" text-sm text-[#919191] font-sans">
             Rows per page
           </span>
-          <select
-            id=""
-            className=" border w-20 px-3 py-1.5 rounded-lg appearance-none text-sm"
-            onChange={(e) => setLimit(parseInt(e.currentTarget.value, 10))}
+          <div
+            className=" border relative flex items-center rounded-lg
+          "
           >
-            {[15, 20, 25, 30].map((value, index) => {
-              if (value === limit) {
+            <select
+              id=""
+              className=" w-20 cursor-pointer px-3 py-1.5 rounded-lg outline-none appearance-none text-sm"
+              onChange={(e) => setLimit(parseInt(e.currentTarget.value, 10))}
+            >
+              {[, 15, 20, 25, 30].map((value, index) => {
                 return (
-                  <option key={index} selected value={value}>
+                  <option key={index} selected={value === limit} value={value}>
                     {value}
                   </option>
                 );
-              } else {
-                return (
-                  <option key={index} value={value}>
-                    {value}
-                  </option>
-                );
-              }
-            })}
-          </select>
+              })}
+            </select>
+            <FaCaretDown className=" mx-2 absolute right-0" />
+          </div>
         </div>
       </section>
     </>
