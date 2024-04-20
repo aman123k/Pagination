@@ -22,8 +22,8 @@ function Pagination({
   return (
     <>
       <section
-        className=" flex items-center absolute bottom-16 ml-[50%]
-      translate-x-[-50%] gap-4 px-4 "
+        className=" flex justify-center items-center 
+      gap-4 px-4 pb-2 "
       >
         <button
           disabled={currentPage === 1}
